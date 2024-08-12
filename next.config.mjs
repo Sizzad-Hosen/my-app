@@ -12,15 +12,15 @@ const nextConfig = {
   },
 
   // Uncomment the redirects function if you want to use it
-  redirects: async () => {
-    return [
-      {
-        source: '/about',
-        destination: '/meals',
-        permanent: true, 
-      },
-    ]
-  },
+//   redirects: async () => {
+//     return [
+//       {
+//         source: '/about',
+//         destination: '/meals',
+//         permanent: true, 
+//       },
+//     ]
+//   },
 };
 
 export default nextConfig;

@@ -1,10 +1,21 @@
 'use client';
 
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation'
+import Image from 'next/image';
 
 const Navbar = () => {
+ 
+  const route = useRouter();
   const pathname = usePathname();
+  const session = useSession();
+  // console.log(session.data.user)
+  const handle = ()=>{
+    route.push("/api/auth/signin")
+  }
+
 
   // Define your routes and their respective titles
   const routes = [
@@ -16,6 +27,7 @@ const Navbar = () => {
     { path: '/posts', title: 'Posts' },
     { path: '/meals', title: 'Meals' },
     { path: '/galary', title: 'Gallery' },
+  
   
     { path: '/categories', title: 'Categories' }
   ];
@@ -38,9 +50,44 @@ const Navbar = () => {
           </li>
         ))}
       </ul>
-      <h2 className="text-2xl mr-5">
-        <Link href="/login">Login</Link>
-      </h2>
+      <h2 className="text-2xl mr-5 flex justify-between">
+
+      <div className='flex justify-between  gap-2'>
+      <Link href={'/api/auth/signup'}>
+        <button  className="btn">
+           SignUp
+          </button>
+        </Link>
+        {
+          session.status =='authenticated'? <button onClick={()=>signOut()} className="btn">
+           Logout
+          </button>
+          :
+          <button onClick={handle} className="btn">
+          Login
+           </button>
+        }
+
+      </div>
+
+        </h2>
+
+
+
+    <div>
+
+      <Image width={50} height={50} src={session?.data?.user?.image} alt="User Image" />
+  
+
+        <h3>
+        {  session?.data?.user?.name}
+        </h3>
+        <h3>
+        {  session?.data?.user?.type}
+        </h3>
+ </div>
+       
+    
     </nav>
   );
 };

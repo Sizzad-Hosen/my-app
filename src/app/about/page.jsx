@@ -1,4 +1,6 @@
+import { getServerSession } from "next-auth";
 import AboutContent from "../components/AboutContent";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
 export const metadata = {
     title: "About",
@@ -12,8 +14,10 @@ export const metadata = {
 
 }
 const page = async() => {
-    const currentTime =await getTime();
 
+    const currentTime =await getTime();
+   const session =await getServerSession(authOptions);
+console.log({session})
     return (
         <div>
             <AboutContent></AboutContent>

@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-
-
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 import Navbar from "./components/Navbar";
 import AuthProvider from "@/services/AuthProvider";
 

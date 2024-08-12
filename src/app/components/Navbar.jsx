@@ -20,7 +20,7 @@ const Navbar = () => {
   // Define your routes and their respective titles
   const routes = [
     { path: '/home', title: 'Home' },
-    { path: '/about', title: 'About' },
+    // { path: '/about', title: 'About' },
     { path: '/service', title: 'Service' },
     { path: '/blogs', title: 'Blogs' },
     { path: '/dashboard', title: 'Dashboard' },
